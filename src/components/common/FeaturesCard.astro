@@ -1,0 +1,71 @@
+---
+
+const FEATURES = [
+  {
+    title: "Conoce la ubicacion en tiempo real de los buses",
+    description: "Conoce la ubicacion en tiempo real de los buses",
+  },
+  {
+    title: "Ahorra tiempo",
+  },
+  {
+    title: "Planea con anticipación",
+    description: "Planea tus rutas sin perder un solo minuto en esperas!! Puedes evitar esperas en las paradas innecesarias "
+  },
+  {
+    title: "Seguiridad al estar menos tiempo expuesto",
+  },
+  {
+    title: "Comparte tu ruta a un click",
+  },
+  {
+    title: "Conoce la informacion de tu bus a un click",
+  }
+]
+
+---
+
+<div class="features-wrapper">
+  <div class="features || flex gap-40 px-20 py-10">
+
+    {
+      FEATURES.map(({ title, description }) => (
+        <div class="border rounded-lg shadow bg-white border-gray-700 min-w-[500px] aspect-square">
+            <div class="p-5">
+              <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{title}</h2>
+              <p class="mb-3 text-sm md:text-base text-slate-600 ">{description}</p>
+            </div>
+        </div>
+    ))
+  }
+  </div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const features = document.querySelector('.features') as HTMLElement
+  const padding = 2150
+
+  const getAmountToScroll = () => {
+    let featuresWidth = features.offsetWidth + padding
+    return -(featuresWidth - window.innerWidth)
+  }
+
+  const featuresTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: '.features-wrapper',
+      scrub: 2,
+      pin: true,
+      start: 'top 15%',
+      end: () => `+=` + getAmountToScroll() * -1
+    }
+  })
+
+  featuresTl.to(features, {
+    x: getAmountToScroll
+  })
+</script>
