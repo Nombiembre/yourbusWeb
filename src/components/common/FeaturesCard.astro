@@ -5,22 +5,25 @@ const FEATURES = [
     title: "Conoce la ubicacion en tiempo real de los buses",
     description: "Conoce la ubicacion en tiempo real de los buses",
   },
-  {
-    title: "Ahorra tiempo",
-  },
+  // {
+  //   title: "Ahorra tiempo",
+  //   icon: <AntDesign name="clockcircleo" size={24} color="black" />
+  // },
   {
     title: "Planea con anticipación",
-    description: "Planea tus rutas sin perder un solo minuto en esperas!! Puedes evitar esperas en las paradas innecesarias "
+    description: "Planea tus rutas sin perder un solo minuto en esperas!! Puedes evitar esperas en las paradas innecesarias ",
   },
   {
     title: "Seguiridad al estar menos tiempo expuesto",
   },
-  {
-    title: "Comparte tu ruta a un click",
-  },
-  {
-    title: "Conoce la informacion de tu bus a un click",
-  }
+  // {
+  //   title: "Comparte tu ruta a un click",
+  //   icon: <AntDesign name="clockcircleo" size={24} color="black" />
+  // },
+  // {
+  //   title: "Conoce la informacion de tu bus a un click",
+  //   icon: <AntDesign name="clockcircleo" size={24} color="black" />
+  // }
 ]
 
 ---
@@ -40,32 +43,3 @@ const FEATURES = [
   }
   </div>
 </div>
-
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
-  const features = document.querySelector('.features') as HTMLElement
-  const padding = 2150
-
-  const getAmountToScroll = () => {
-    let featuresWidth = features.offsetWidth + padding
-    return -(featuresWidth - window.innerWidth)
-  }
-
-  const featuresTl = gsap.timeline({
-    scrollTrigger: {
-      trigger: '.features-wrapper',
-      scrub: 2,
-      pin: true,
-      start: 'top 15%',
-      end: () => `+=` + getAmountToScroll() * -1
-    }
-  })
-
-  featuresTl.to(features, {
-    x: getAmountToScroll
-  })
-</script>
